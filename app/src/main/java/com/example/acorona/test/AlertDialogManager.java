@@ -1,4 +1,4 @@
-package com.example.iperez.tallerimagenes.Sesiones;
+package com.example.acorona.test;
 
 /**
  * Created by iperez on 8/21/2017.
