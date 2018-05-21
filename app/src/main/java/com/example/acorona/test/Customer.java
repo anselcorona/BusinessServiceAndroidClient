@@ -9,9 +9,7 @@ import java.io.Serializable;
  *
  * @author acorona
  */
-public class Customer implements Serializable, Parcelable {
-    private static final long serialVersionUID = 1L;
-
+public class Customer implements Parcelable {
     private Integer customerNumber;
 
     private String customerName;
