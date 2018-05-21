@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.example.acorona.test;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.io.Serializable;
 
@@ -11,7 +9,7 @@ import java.io.Serializable;
  *
  * @author acorona
  */
-public class Customer implements Serializable {
+public class Customer implements Serializable, Parcelable {
     private static final long serialVersionUID = 1L;
 
     private Integer customerNumber;
@@ -171,4 +169,65 @@ public class Customer implements Serializable {
         return "com.newsoft.tallerservicio.entidades.Customers[ customerNumber=" + customerNumber + " ]";
     }
 
+
+    protected Customer(Parcel in) {
+        customerNumber = in.readByte() == 0x00 ? null : in.readInt();
+        customerName = in.readString();
+        contactLastName = in.readString();
+        contactFirstName = in.readString();
+        phone = in.readString();
+        addressLine1 = in.readString();
+        addressLine2 = in.readString();
+        city = in.readString();
+        state = in.readString();
+        postalCode = in.readString();
+        country = in.readString();
+        salesRepEmployeeNumber = in.readByte() == 0x00 ? null : in.readInt();
+        creditLimit = in.readDouble();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (customerNumber == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeInt(customerNumber);
+        }
+        dest.writeString(customerName);
+        dest.writeString(contactLastName);
+        dest.writeString(contactFirstName);
+        dest.writeString(phone);
+        dest.writeString(addressLine1);
+        dest.writeString(addressLine2);
+        dest.writeString(city);
+        dest.writeString(state);
+        dest.writeString(postalCode);
+        dest.writeString(country);
+        if (salesRepEmployeeNumber == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeInt(salesRepEmployeeNumber);
+        }
+        dest.writeDouble(creditLimit);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Customer> CREATOR = new Parcelable.Creator<Customer>() {
+        @Override
+        public Customer createFromParcel(Parcel in) {
+            return new Customer(in);
+        }
+
+        @Override
+        public Customer[] newArray(int size) {
+            return new Customer[size];
+        }
+    };
 }
