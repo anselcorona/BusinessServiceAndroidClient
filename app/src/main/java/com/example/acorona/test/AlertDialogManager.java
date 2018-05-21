@@ -1,14 +1,10 @@
 package com.example.acorona.test;
 
-/**
- * Created by iperez on 8/21/2017.
- */
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import com.example.iperez.tallerimagenes.R;
 
 public class AlertDialogManager {
     /**
