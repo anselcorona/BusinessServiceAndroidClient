@@ -3,4 +3,13 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="number">Number:</string>
+    <string name="name">Name:</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="postalcode">Postal Code</string>
+    <string name="country">Country</string>
+    <string name="CredLim">Credit Limit</string>
+    <string name="Client_List">Client List</string>
 </resources>

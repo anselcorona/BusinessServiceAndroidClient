@@ -6,17 +6,13 @@
     android:padding="15dp"
     xmlns:tools="http://schemas.android.com/tools">
     <TextView
-        android:textSize="24sp"
         android:id="@+id/CustomerName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        style="@style/ListNameTextView"
         android:layout_weight="0.5"
         tools:text="@string/app_name"/>
     <TextView
-        android:textSize="24sp"
         android:id="@+id/CustomerPhoneNumber"
-        tools:text="@string/app_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"/>
+        style="@style/ListNumberTextView"
+        android:layout_weight="0.5"
+        tools:text="@string/app_name"/>
 </LinearLayout>
