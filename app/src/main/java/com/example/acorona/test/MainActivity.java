@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -26,7 +25,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Customer> customers = new ArrayList<>();
     private RecyclerView customerView;
-    private LinearLayoutManager linearLayoutManager;
+
     private CustomerAdapter customerAdapter;
 
 
@@ -56,25 +55,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         customerView = findViewById(R.id.customerRecyclerView);
-        linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         customerView.setLayoutManager(linearLayoutManager);
         loadClients();
 
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     private void loadClients(){
-        ServiceGenerator serviceGenerator = new ServiceGenerator();
         final ProgressDialog loading = ProgressDialog.show(this, "Cargando clientes", "Por favor espere", false, false);
-        businessServiceClient bsc = serviceGenerator.createService(businessServiceClient.class);
+        businessServiceClient bsc = ServiceGenerator.createService(businessServiceClient.class);
 
         Call<List<Customer>> receivedCustomers = bsc.getCustomer();
         if(receivedCustomers!=null){
             receivedCustomers.enqueue(new Callback<List<Customer>>() {
                 @Override
-                public void onResponse(Call<List<Customer>> call, Response<List<Customer>> response) {
+                public void onResponse(@NonNull Call<List<Customer>> call, @NonNull Response<List<Customer>> response) {
                     loading.dismiss();
                     if(response.code()==404){
                         AlertDialog.Builder builder;
@@ -118,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 @Override
-                public void onFailure(Call<List<Customer>> call, Throwable t) {
+                public void onFailure(@NonNull Call<List<Customer>> call, @NonNull Throwable t) {
                     loading.dismiss();
                     AlertDialog.Builder builder;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

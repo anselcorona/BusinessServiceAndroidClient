@@ -22,7 +22,7 @@ public class DetailActivity extends AppCompatActivity {
         TextView CreditLimit = findViewById(R.id.customer_detail_CreditLimit);
 
         Bundle extras = getIntent().getExtras();
-        final Customer customer = extras.getParcelable("CUSTOMER");
+        final Customer customer = extras != null ? (Customer) extras.getParcelable("CUSTOMER") : null;
 
         if(customer!=null){
             name.setText(customer.getCustomerName());
